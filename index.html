@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<!--
+	/*
+	* Copyright (c) 2016 Evgenii Dobrovidov
+	* This file is part of "Music Player".
+	*
+	* "Music Player" is free software: you can redistribute it and/or modify
+	* it under the terms of the GNU General Public License as published by
+	* the Free Software Foundation, either version 3 of the License, or
+	* (at your option) any later version.
+	*
+	* "Music Player" is distributed in the hope that it will be useful,
+	* but WITHOUT ANY WARRANTY; without even the implied warranty of
+	* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	* GNU General Public License for more details.
+	*
+	* You should have received a copy of the GNU General Public License
+	* along with "Music Player".  If not, see <http://www.gnu.org/licenses/>.
+	*/
+	-->
+	<head>
+	    <meta charset="utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	    <meta name="description" content="Music Player" />
+	
+	    <title>Music Player</title>
+	
+		<link rel="stylesheet"  href="lib/tau/wearable/theme/brown/tau.min.css">
+	    <link rel="stylesheet" type="text/css" href="css/style.css" />
+	</head>
+	<body>
+		<div class="ui-page ui-page-active" id="main">
+			<header class="ui-header">
+				<h2 class="ui-title ui-icon" style="background-image:url(res/header.png)" data-localize="title">Music Player</h2>
+			</header>
+			<div class="ui-content">
+				<ul class="file-list ui-listview">
+				</ul>
+			</div>
+			<footer class="ui-footer ui-grid-col-2">
+				<a href="#" class="play-current-button ui-btn ui-btn-icon disabled" style="background-image:url(res/current.png);" id="show_current_playing"></a>
+				<a href="#" class="play-current-button ui-btn ui-btn-icon" style="background-image:url(res/play.png);" id="play_current_dir"></a>
+			</footer>
+		</div>
+		
+		<div class="ui-page" id="player">
+			<header class="ui-header">
+				<h2 class="ui-title ui-icon" style="background-image:url(res/header.png)">/folder 1</h2>
+			</header>
+			<div class="ui-content">
+				<div class="section-changer" id="player_section_changer">
+					<section class="ui-section-active" id="player_controls_section">
+						<div class="no-files-found-msg" data-localize="not_found_msg">
+							Music was not found in this directory or its children.
+						</div>
+						<div class="current-song-info">
+							<span class="file" id="song_file"></span>
+							<div class="autosize-container">
+								<span class="artist" id="song_artist"></span>
+							</div>
+							<span class="song" id="song_title"></span>
+						</div>
+						<div class="player-controls">
+							<audio src="" preload="auto" id="audio_player" controls="controls"></audio>
+							<div class="prev button"></div>
+							<div class="play-pause button"></div>
+							<div class="next button"></div>
+						</div>
+						<div class="song-progress">
+							<span class="position"></span>
+							<div class="progress">
+								<span class="progress-bar"></span>	
+							</div>
+							<span class="duration"></span>
+						</div>
+					</section>
+					
+					<section id="player_volume_section">
+						<p class="volume-title" data-localize="volume_title">Volume</p>
+						<div class="volume_controls">
+							<div class="lower button"></div>
+							<div class="level">20</div>
+							<div class="higher button"></div>
+						</div>					
+					</section>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="lib/tau/wearable/js/tau.min.js"></script>
+		<script type="text/javascript" src="js/battery.js"></script>
+		<script type="text/javascript" src="js/main.js" defer="defer"></script>
+	</body>
+</html>

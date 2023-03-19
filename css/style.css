@@ -1,0 +1,415 @@
+/*
+* Copyright (c) 2016 Evgenii Dobrovidov
+* This file is part of "Music Player".
+*
+* "Music Player" is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* "Music Player" is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with "Music Player".  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+* {
+    font-family: Verdana, Lucida Sans, Arial, Helvetica, sans-serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: rgba(36,27,19,1);
+}
+
+.ui-header .ui-title {
+	color: white;
+}
+
+#main .ui-footer {
+	height: 76px;
+}
+
+.file-list {
+	
+}
+.file-list .folder, .file-list .file, .file-list .back {
+	padding-left: 60px;
+}
+
+.file-list .back {
+	background: url('../res/up.png') 15px center no-repeat;
+	font-size: 90%;
+	line-height: 1rem;
+	min-height: 1rem;
+}
+.file-list .back a {
+	color: rgb(189, 167, 146);
+}
+.file-list .folder {
+	background: url('../res/folder.png') 15px center no-repeat;
+}
+.file-list .folder.internal {
+	background: url('../res/internal.png') 15px center no-repeat;
+}
+.file-list .file {
+	background: url('../res/music.png') 15px center no-repeat;
+}
+.file-list .file.unknown {
+	background-image: url('../res/file.png');
+}
+
+
+/*#player .ui-content {
+	position: relative;
+}*/
+.no-files-found-msg {
+	width: 100%;
+	height: 100%;
+	display: -webkit-box;
+	-webkit-box-pack: center;
+	-webkit-box-align: center;
+	text-align: center;
+	font-size: 130%;
+	position: absolute;
+	z-index: 10000;
+	background: rgba(36,27,19,1);
+}
+
+#audio_player {
+	display: none;
+}
+
+#player .current-song-info {
+	height: 50%;
+	text-align: center;
+	padding-top: 10%;
+}
+.small-screen #player .current-song-info {
+	padding-top: 10px;
+}
+#player .current-song-info > span, #player .current-song-info > div.autosize-container {
+	display: block;
+	padding: 0 15px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+#player .current-song-info .file {
+	font-size: 80%;
+	color: rgb(189, 167, 146);
+}
+.small-screen #player .current-song-info .file {
+	font-size: 65%;
+}
+#player .current-song-info .artist {
+	display: inline;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	font-size: 140%;
+}
+.small-screen #player .current-song-info .artist {
+	font-size: 125%;
+}
+#player .current-song-info .song {
+	font-size: 110%;
+}
+.small-screen #player .current-song-info .song {
+	font-size: 95%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+#player .player-controls {
+	height: 25%;
+	display: -webkit-box;
+	-webkit-box-pack: center;
+	-webkit-box-align: center;
+	text-align: center;
+}
+.small-screen #player .player-controls {
+	height: 92px;
+}
+#player .player-controls .button {
+	border-radius: 100%;
+	background: rgb(248, 225, 195);
+	background-position: center center;
+	background-repeat: no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 10px;
+	box-shadow: 0 6px rgba(117, 86, 52, 1);
+	position: relative;
+	user-select: none;
+	transition: all 0.2s ease;
+}
+#player .player-controls .button:active {
+	box-shadow: 0 0 rgba(117, 86, 52, 1);
+	top: 6px; 
+}
+#player .player-controls .prev.button {
+	width: 62px;
+	height: 62px;
+	background-image: url('../res/prev.png');
+}
+#player .player-controls .play-pause.button {
+	width: 92px;
+	height: 92px;
+	background-position: 17px center;
+	background-image: url('../res/play_black.png');
+}
+#player .player-controls .play-pause.button.pause {
+	background-position: center center;
+	background-image: url('../res/pause.png');
+}
+#player .player-controls .next.button {
+	width: 62px;
+	height: 62px;
+	background-image: url('../res/next.png');
+}
+
+#player .song-progress {
+	height: 25%;
+	padding: 20px;
+	font-size: 70%;
+	color: white;
+	overflow: hidden;
+	zoom: 1;
+}
+.small-screen #player .song-progress {
+	padding: 0 20px;
+	height: 25px;
+	margin-top: 10px;
+}
+#player .song-progress > * {
+	float: left;
+	text-align: center;
+}
+#player .song-progress span {
+	display: block;
+}
+#player .song-progress .position {
+	width: 15%;
+}
+#player .song-progress .progress {
+	width: 70%;
+	height: 100%;
+	padding: 7px 10px;
+}
+.small-screen #player .song-progress .progress {
+	width: 195px;
+}
+#player .song-progress .progress .progress-bar {
+	border-radius: 5px;
+	background: #41beff;
+	height: 10px;
+	width: 0;
+}
+#player .song-progress .duration {
+	width: 15%;
+}
+
+#player #player_volume_section p.volume-title {
+	text-align: center;
+	font-size: 140%;
+	margin: 100px 0 40px 0;
+}
+.small-screen #player #player_volume_section p.volume-title {
+	margin: 40px 0;
+}
+#player #player_volume_section .volume_controls {
+	text-align: center;
+}
+#player #player_volume_section .volume_controls .button {
+	border-radius: 100%;
+	background: rgb(248, 225, 195);
+	background-position: center center;
+	background-repeat: no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 10px;
+	box-shadow: 0 6px rgba(117, 86, 52, 1);
+	position: relative;
+	user-select: none;
+	transition: all 0.2s ease;
+	width: 62px;
+	height: 62px;
+}
+#player #player_volume_section .volume_controls .button:before {
+	color: black;
+	font-size: 70px;
+	position: relative;
+	top: -14px;
+	/*left: 16px;*/
+}
+#player #player_volume_section .volume_controls .button:active {
+	box-shadow: 0 0 rgba(117, 86, 52, 1);
+	top: 6px; 
+}
+#player #player_volume_section .volume_controls .lower.button:before {
+	content: '-';
+}
+#player #player_volume_section .volume_controls .higher.button:before {
+	content: '+';
+	top: -10px;
+}
+#player #player_volume_section .volume_controls .level {
+	font-size: 180%;
+	width: 100px;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.ui-listview li .li-text-sub {
+        display: block;
+        color: rgb(189, 167, 146);
+        font-size: 28px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        line-height: 32px;
+}
+.ui-listview li.li-has-multiline {
+        padding-top: 6px;
+        padding-bottom: 5px;
+        min-height: 100px;
+}
+.ui-listview li.li-has-radio.disabled,
+.ui-listview li.li-has-radio.disabled > *,
+.ui-listview li.li-has-checkbox.disabled,
+.ui-listview li.li-has-checkbox.disabled > *,
+.ui-listview li.li-has-multiline.disabled,
+.ui-listview li.li-has-multiline.disabled > *,
+.ui-listview li.li-has-multiline-sup.disabled,
+.ui-listview li.li-has-multiline-sup.disabled > * {
+        color: rgb(51, 51, 51);
+}
+.ui-listview li.li-has-multiline > a {
+        margin-top: -6px;
+        margin-bottom: -6px;
+        padding-top: 11px;
+        padding-bottom: 12px;
+}
+.ui-listview li.li-has-multiline.2lines > a {
+        margin-bottom: -62px;
+        padding-bottom: 62px;
+}
+.ui-listview li.li-has-multiline-sup {
+        padding-top: 6px;
+        padding-bottom: 5px;
+        min-height: 100px;
+}
+.ui-listview li.li-has-multiline-sup > a {
+        margin-top: -36px;
+        margin-bottom: -5px;
+        padding-top: 36px;
+        padding-bottom: 5px;
+}
+.ui-listview li {
+        position: relative;
+}
+.ui-listview li input[type="checkbox"],
+.ui-listview li input[type="radio"] {
+        position: absolute;
+        right: 8px;
+        top: 0px;
+        margin-top: 13px;
+}
+.ui-listview .li-has-radio.disabled,
+.ui-listview li.li-has-multiline.li-has-radio.disabled,
+.ui-listview li.li-has-multiline.li-has-radio.disabled .li-text-sub,
+.ui-listview li.li-has-multiline.li-has-checkbox.disabled,
+.ui-listview li.li-has-multiline.li-has-checkbox.disabled .li-text-sub {
+	color: rgb(51, 51, 51);
+}
+.ui-listview li.li-has-checkbox label,
+.ui-listview li.li-has-radio label{
+	display: block;
+	padding-bottom: 25px;
+	padding-left: 16px;
+	padding-right: 64px;
+	padding-top: 24px;
+	margin-top: -21px;
+	margin-bottom: -21px;
+	margin-left: -16px;
+	margin-right: -16px;
+}
+.ui-listview li.li-has-multiline.li-has-checkbox label,
+.ui-listview li.li-has-multiline.li-has-radio label {
+        display: block;
+        padding-bottom: 12px;
+        padding-left: 16px;
+        padding-right: 64px;
+        padding-top: 11px;
+        margin-top: -6px;
+        margin-bottom: -6px;
+        margin-left: -16px;
+        margin-right: -16px;
+}
+
+.ui-listview li.li-has-next-depth {
+    padding-right: 60px;
+}
+.ui-listview li.li-has-next-depth a,
+.ui-listview li.li-has-next-depth.disabled {
+	position: relative;
+	margin-right: -60px;
+	padding-right: 60px;
+}
+.ui-listview li.li-has-next-depth a:after {
+	position: absolute;
+	content: "";
+	right: 0;
+	width: 50px;
+	height: 50px;
+	top: 50%;
+	margin-top: -25px;
+	background-repeat: no-repeat;
+    background-size: 50px 50px;
+    background-position: right center;
+    background-image: url(../res/Controller_icon/tw_btn_next_depth_holo_dark.png);
+}
+.ui-listview li.li-has-next-depth.disabled a:after {
+	position: absolute;
+	right: 0;
+	content: "";
+	width: 50px;
+	height: 50px;
+	top: 50%;
+	margin-top: -25px;
+    background-repeat: no-repeat;
+    background-size: 50px 50px;
+    background-position: right center;
+    background-image: url(../res/Controller_icon/tw_btn_next_depth_disabled_holo_dark.png);
+}
+.ui-listview li.li-has-next-depth a:active:after,
+.ui-listview li.li-has-next-depth a:focus:after {
+	position: absolute;
+	content: "";
+	right: 0;
+	width: 50px;
+	height: 50px;
+	top: 50%;
+	margin-top: -25px;
+    background-repeat: no-repeat;
+    background-size: 50px 50px;
+    background-position: right center;
+    background-image: url(../res/Controller_icon/tw_btn_next_depth_focused_holo_dark.png);
+}
+.ui-listview li.li-has-next-depth.disabled,
+.ui-listview li.li-has-next-depth.disabled a,
+.ui-listview li.li-has-next-depth.disabled .li-text-sub {
+    color: rgb(51, 51, 51);
+}
+.disabled {
+    pointer-events: none;
+}
+.ui-btn.disabled {
+	opacity: 0.5;
+}
+
